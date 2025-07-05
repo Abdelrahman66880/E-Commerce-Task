@@ -127,3 +127,35 @@ class ShippingService:
             print(f"{item.get_name()}\t\t{int(item.get_weight()*1000)}g")
             total_weight += item.get_weight()
         print(f"Total package weight {total_weight:.1f}kg\n")
+
+
+def checkout(customer, cart):
+    if cart.is_empty:
+        print("Error: cart is empty")
+        return
+    
+    subtotal = 0
+    shippig = 0
+    shippables = []
+    
+    for product, qty in cart.items.items():
+        if product.is_expirable() and product.is_expired():
+            print(f"Error: Product {product.name} is expired")
+            return
+
+        if product.quantity < qty:
+            print(f"Error: Product {product.name} out of stock.")
+            return
+        
+        subtotal += product.price * qty
+        if isinstance(product, Shippable):
+            shipping += 10  # flat shipping per shippable product * qty
+            for _ in range(qty):
+                shippables.append(product)
+    total = subtotal + shippig
+    
+    if customer.balance < total:
+        print("Error: Insufficient balance.")
+        return
+    
+        
