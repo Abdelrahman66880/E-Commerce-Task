@@ -74,4 +74,24 @@ class TV(Product, Shippable):
 class MobileScratchCard(Product):
     def __init__(self, name, price, quantity):
         super().__init__(name, price, quantity)
+        
+
+class ProductFactory:
+    @staticmethod
+    def create_product(product_type, name, price, quantity, **kwargs):
+        if product_type == "Cheese":
+            expiry_date = kwargs.get('expiry_date', date.today() + timedelta(days=5))
+            weight = kwargs.get('weight', 0.2)
+            return Cheese(name, price, quantity, expiry_date, weight)
+        elif product_type == "Biscuits":
+            expiry_date = kwargs.get('expiry_date', date.today() + timedelta(days=10))
+            weight = kwargs.get('weight', 0.7)
+            return Biscut(name, price, quantity, expiry_date, weight)
+        elif product_type == "TV":
+            weight = kwargs.get('weight', 15.0)
+            return TV(name, price, quantity, weight)
+        elif product_type == "MobileScratchCard":
+            return MobileScratchCard(name, price, quantity)
+        else:
+            raise ValueError(f"Unknown product type: {product_type}")
 
