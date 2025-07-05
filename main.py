@@ -158,4 +158,13 @@ def checkout(customer, cart):
         print("Error: Insufficient balance.")
         return
     
+    
+    # ============================================
+    for product, qty in cart.items.items():
+        product.quantity -= qty
+    customer.balance -= total
+    
+    if shippables:
+        ShippingService.ship(shippables)
+    
         
