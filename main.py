@@ -167,6 +167,8 @@ def checkout(customer, cart):
     if shippables:
         ShippingService.ship(shippables)
     
+    
+    # ==============================================
     print("** Checkout receipt **")
     for product, qty in cart.items.items():
         print(f"{qty}x {product.name}\t\t{int(product.price * qty)}")
