@@ -167,4 +167,11 @@ def checkout(customer, cart):
     if shippables:
         ShippingService.ship(shippables)
     
-        
+    print("** Checkout receipt **")
+    for product, qty in cart.items.items():
+        print(f"{qty}x {product.name}\t\t{int(product.price * qty)}")
+    print("----------------------")
+    print(f"Subtotal\t{int(subtotal)}")
+    print(f"Shipping\t{int(shipping)}")
+    print(f"Amount\t\t{int(total)}")
+    print(f"Customer balance after payment: {int(customer.balance)}\n")
