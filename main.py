@@ -123,7 +123,7 @@ class ShippingService:
     def ship(shippables):
         print("** Shipment notice **")
         total_weight = 0
-    for item in shippables:
+        for item in shippables:
             print(f"{item.get_name()}\t\t{int(item.get_weight()*1000)}g")
             total_weight += item.get_weight()
         print(f"Total package weight {total_weight:.1f}kg\n")
