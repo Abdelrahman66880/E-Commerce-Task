@@ -32,6 +32,30 @@ class ExpirableProduct(Product):
     #Just as assumtion
     def is_expired(self):
         return self.expiry_date < date.today
+
+
+class Cheese(Exception, Shippable):
+    def __init__(self, name, price, quantity, expiry_date, weight):
+        super().__init__(name, price, quantity, expiry_date)
+        self.weight = weight
+    
+    def get_name(self):
+        return self.name
+    
+    def get_weight(self):
+        return self.weight
+    
+
+class Biscut(ExpirableProduct, Shippable):
+    def __init__(self, name, price, quantity, expiry_date, weight):
+        super().__init__(name, price, quantity, expiry_date)
+        self.weight = weight
+
+    def get_name(self):
+        return self.name
+
+    def get_weight(self):
+        return self.weight
     
         
 
