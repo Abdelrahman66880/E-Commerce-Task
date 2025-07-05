@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 
 class Shippable:
     def get_name(self):
@@ -31,10 +31,10 @@ class ExpirableProduct(Product):
     
     #Just as assumtion
     def is_expired(self):
-        return self.expiry_date < date.today
+        return self.expiry_date < date.today()
 
 
-class Cheese(Exception, Shippable):
+class Cheese(ExpirableProduct, Shippable):
     def __init__(self, name, price, quantity, expiry_date, weight):
         super().__init__(name, price, quantity, expiry_date)
         self.weight = weight
@@ -130,12 +130,12 @@ class ShippingService:
 
 
 def checkout(customer, cart):
-    if cart.is_empty:
+    if cart.is_empty():
         print("Error: cart is empty")
         return
     
     subtotal = 0
-    shippig = 0
+    shipping = 0
     shippables = []
     
     for product, qty in cart.items.items():
@@ -152,14 +152,12 @@ def checkout(customer, cart):
             shipping += 10  # flat shipping per shippable product * qty
             for _ in range(qty):
                 shippables.append(product)
-    total = subtotal + shippig
-    
+
+    total = subtotal + shipping
     if customer.balance < total:
         print("Error: Insufficient balance.")
         return
     
-    
-    # ============================================
     for product, qty in cart.items.items():
         product.quantity -= qty
     customer.balance -= total
@@ -167,8 +165,6 @@ def checkout(customer, cart):
     if shippables:
         ShippingService.ship(shippables)
     
-    
-    # ==============================================
     print("** Checkout receipt **")
     for product, qty in cart.items.items():
         print(f"{qty}x {product.name}\t\t{int(product.price * qty)}")
