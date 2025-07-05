@@ -59,4 +59,19 @@ class Biscut(ExpirableProduct, Shippable):
     
         
 
-        
+class TV(Product, Shippable):
+    def __init__(self, name, price, quantity, weight):
+        super().__init__(name, price, quantity)
+        self.weight = weight
+    
+    def get_name(self):
+        return self.name
+    
+    def get_weight(self):
+        return self.weight
+
+
+class MobileScratchCard(Product):
+    def __init__(self, name, price, quantity):
+        super().__init__(name, price, quantity)
+
