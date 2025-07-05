@@ -95,3 +95,19 @@ class ProductFactory:
         else:
             raise ValueError(f"Unknown product type: {product_type}")
 
+
+class Cart:
+    def __init__(self):
+        self.items = {}
+    
+    def add(self, product, qty):
+        if qty <= 0 or qty > product.quantity:
+            print(f"Invalid quantity for product: {product.name}")
+            return
+        if product in self.items:
+            self.items[product] += qty
+        else:
+            self.items[product] = qty
+    
+    def is_empty(self):
+        return len(self.items) == 0
