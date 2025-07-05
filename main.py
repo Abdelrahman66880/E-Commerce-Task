@@ -29,6 +29,7 @@ class ExpirableProduct(Product):
     def is_expirable(self):
         return True
     
+    #Just as assumtion
     def is_expired(self):
         return self.expiry_date < date.today
     
