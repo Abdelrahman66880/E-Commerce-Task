@@ -31,36 +31,10 @@ test.py      # Example usage and test scenario
    - Simulate a customer checkout
    - Print a receipt and shipping notice
 
-## Example Output
-
-```
-** Shipment notice **
-Cheese          200g
-Biscuits        700g
-TV              15000g
-Total package weight 15.9kg
-
-** Checkout receipt **
-2x Cheese       200
-1x Biscuits     150
-1x TV           5000
-1x ScratchCard  50
-----------------------
-Subtotal        5400
-Shipping        30
-Amount          5430
-Customer balance after payment: 570
-```
 
 ## Requirements
 
 - Python 3.6 or higher
 
-## Notes
-
-- The code is for educational purposes and demonstrates OOP concepts.
-- You can extend the system by adding more product types or features.
-
-## Author
-
-- *Your Name Here*
+## Results
+![Sample ScreenShoot](./images/image.png)
